@@ -20,21 +20,21 @@ export default class Perguntas extends Component {
   handleChange(info) {
     const { receivedQuestions } = this.state;
     const id = (receivedQuestions.length === 0) ? 1 : (receivedQuestions.length) + 1;
-    const completeInfo = { ...info, id }
+    const completeInfo = { ...info, id };
     this.setState((state) => {
       return ({
         questions: completeInfo,
         numberOfQuestions: state.numberOfQuestions + 1,
         receivedQuestions: [...state.receivedQuestions, completeInfo],
-      })
+      });
     });
   }
 
   checked(value) {
     this.setState({
       checked: value,
-    })
-    this.sortList(value)
+    });
+    this.sortList(value);
   }
 
   sortList(value) {
@@ -43,13 +43,13 @@ export default class Perguntas extends Component {
       const sorted = receivedQuestions.sort((a, b) => b.votes - a.votes);
       this.setState({
         receivedQuestions: sorted,
-      })
+      });
     } else {
       const sorted = receivedQuestions.sort((a, b) => a.votes - b.votes);
       this.setState({
         receivedQuestions: sorted,
-      })
-    }
+      });
+    };
   }
 
   updateVote({ target }) {
