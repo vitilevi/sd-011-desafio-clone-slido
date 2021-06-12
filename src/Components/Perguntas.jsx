@@ -39,17 +39,13 @@ export default class Perguntas extends Component {
 
   sortList(value) {
     const { receivedQuestions } = this.state;
-    if (value) {
-      const sorted = receivedQuestions.sort((a, b) => b.votes - a.votes);
-      this.setState({
-        receivedQuestions: sorted,
-      });
-    } else {
-      const sorted = receivedQuestions.sort((a, b) => a.votes - b.votes);
-      this.setState({
-        receivedQuestions: sorted,
-      });
-    };
+    const sorted = receivedQuestions.sort((a, b) => {
+      const decision = value ? b.votes - a.votes : a.votes - b.votes;
+      return decision;
+    });
+    this.setState({
+      receivedQuestions: sorted,
+    });
   }
 
   updateVote({ target }) {
@@ -59,17 +55,13 @@ export default class Perguntas extends Component {
     const filterEle = arrClone.filter(quest => quest.id === id);
     const objFiltered = arrClone.filter(quest => quest.id !== id);
     filterEle[0].votes += 1;
-    if (checked) {
-      const obj = [...objFiltered, ...filterEle].sort((a, b) => b.votes - a.votes);
-      this.setState({
-        receivedQuestions: obj,
-      });
-    } else {
-      const obj = [...objFiltered, ...filterEle].sort((a, b) => a.id - b.id);
-      this.setState({
-        receivedQuestions: obj,
-      });
-    }
+    const obj = [...objFiltered, ...filterEle].sort((a, b) => {
+      const decision = checked ? b.votes - a.votes : a.id - b.id;
+      return decision;
+    });
+    this.setState({
+      receivedQuestions: obj,
+    });
   }
 
   handleArchive({ target }) {
@@ -79,7 +71,7 @@ export default class Perguntas extends Component {
     const arrClone = [...receivedQuestions];
     const filterEle = arrClone.filter(quest => quest.id === id);
     const objFiltered = arrClone.filter(quest => quest.id !== id);
-    archive(filterEle);
+    archive(filterEle,);
     const result = objFiltered.sort((a, b) => a.id - b.id);
     this.setState({
       receivedQuestions: result
