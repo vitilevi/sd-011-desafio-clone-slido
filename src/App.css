@@ -59,3 +59,11 @@ body {
 .checkbox{
   margin-left:10px
 }
+
+.name{
+  width: 280px;
+}
+
+.name-ans {
+  font-weight: 800;
+}

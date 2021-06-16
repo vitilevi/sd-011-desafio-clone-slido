@@ -4,9 +4,10 @@ import Form from './Form';
 export default class Perguntas extends Component {
   constructor(props) {
     super(props);
+    const { startQuestions } = props
     this.state = {
       questions: {},
-      receivedQuestions: [],
+      receivedQuestions: [...startQuestions],
       numberOfQuestions: 0,
       checked: false,
     }
@@ -71,8 +72,8 @@ export default class Perguntas extends Component {
     const arrClone = [...receivedQuestions];
     const filterEle = arrClone.filter(quest => quest.id === id);
     const objFiltered = arrClone.filter(quest => quest.id !== id);
-    archive(filterEle,);
     const result = objFiltered.sort((a, b) => a.id - b.id);
+    archive(filterEle, result);
     this.setState({
       receivedQuestions: result
     });
@@ -93,7 +94,7 @@ export default class Perguntas extends Component {
               </div>
               <div className="question-content">
                 <div>
-                  <p className="fw-light">Nome: {name}</p>
+                  <h4 className="fw-bold fw-light">{name}</h4>
                 </div>
                 <div>
                   <p className="">{question}</p>

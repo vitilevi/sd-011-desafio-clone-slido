@@ -45,7 +45,7 @@ export default class Form extends Component {
               <input
                 id="name-input"
                 name="name"
-                className="form-control"
+                className=" name form-control"
                 value={name}
                 onChange={this.handleChange}
                 type="text"

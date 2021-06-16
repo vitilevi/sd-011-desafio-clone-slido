@@ -13,10 +13,10 @@ export default class Respondidas extends Component {
             </div>
             <div className="question-content">
               <div>
-                <p>Nome: {name}</p>
+                <h4 className="fw-bold fw-light">{name}</h4>
               </div>
               <div>
-                <p>Pergunta: {question}</p>
+                <p className="">{question}</p>
               </div>
             </div>
             <div className="question-btn">

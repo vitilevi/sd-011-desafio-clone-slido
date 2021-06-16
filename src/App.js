@@ -9,18 +9,20 @@ export default class App extends Component {
     super(props);
     this.state = {
       receivedQuestions: [],
+      startQuestions: [],
     }
     this.handleArchive = this.handleArchive.bind(this);
   }
 
-  handleArchive(resp) {
+  handleArchive(resp, obj) {
     this.setState((state) => ({
       receivedQuestions: [...state.receivedQuestions, ...resp],
+      startQuestions: [...obj],
     }));
   }
 
   render() {
-    const { receivedQuestions } = this.state;
+    const { receivedQuestions, startQuestions } = this.state;
     return (
       <BrowserRouter>
         <div className="App">
@@ -37,7 +39,7 @@ export default class App extends Component {
                 <Respondidas receivedQuestions={receivedQuestions} />
               </Route>
               <Route exact path="/">
-                <Perguntas archive={this.handleArchive} />
+                <Perguntas startQuestions={startQuestions} archive={this.handleArchive} />
               </Route>
             </Switch>
           </div>
